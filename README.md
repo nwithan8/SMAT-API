@@ -2,7 +2,7 @@
 A Python API wrapper for the [Social Media Analysis Toolkit](https://www.smat-app.com/timeline)
 
 # Installation:
-- Clone this repo with ``git clone https://github.com/nwithan8/SMAT-API.git``
+- Clone this repo with ``git clone https://github.com/nwithan8/SMAT-API.git`` or install from PyPi with ``pip install smat``
 - Import into your project with ``from smat import API``
 
 # Usage:
@@ -15,4 +15,4 @@ This library currently supports the three main methods of [SMAT's API](https://a
 - ``term`` is a required parameter for each field. All other parameters are optional or have preset defaults.
 - Default outlet is ``reddit``
 
-Docs and PyPi package coming soon. PRs welcome.
+Docs coming soon. PRs welcome.
