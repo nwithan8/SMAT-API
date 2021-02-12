@@ -1,10 +1,18 @@
-# Bake a PyPi
-Easy setup for an automated PyPi package
+# SMAT
+A Python API wrapper for the [Social Media Analysis Toolkit](https://www.smat-app.com/timeline)
+
+# Installation:
+- Clone this repo with ``git clone https://github.com/nwithan8/SMAT-API.git``
+- Import into your project with ``from smat import API``
 
 # Usage:
-- [ ] Change "packageName" in ``setup.py`` and ``_info.py`` to whatever your package name is.
-- [ ] Change the "packageName" folder to this same name.
-- [ ] In ``Settings -> Secrets``, add ``PYPI_USERNAME`` and ``PYPI_PASSWORD``.
-- [ ] Do code.
-- [ ] When making a release, update ``__version__`` in ``_info.py`` This must be entirely numeric for PyPi (i.e. 1.0.0, not 1.0.b). Set the TAG to this same number EXACTLY.
-- [ ] Package will be automatically generated and uploaded to PyPi whenever a release is created.
+This library currently supports the three main methods of [SMAT's API](https://api.smat-app.com/docs#):
+
+- ``get_content``: Get a list of posts from a specific outlet
+- ``get_activity``: Aggregate based on a particular field on a specific outlet
+- ``get_time_series``: Get a time series for a specific outlet
+
+- ``term`` is a required parameter for each field. All other parameters are optional or have preset defaults.
+- Default outlet is ``reddit``
+
+Docs and PyPi package coming soon. PRs welcome.
