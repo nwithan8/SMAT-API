@@ -1,0 +1,58 @@
+name: Tests
+on:
+  push:
+    branches:
+      - develop
+  pull_request: ~
+
+jobs:
+  versions:
+    runs-on: ubuntu-latest
+    outputs:
+      server_versions: ${{ steps.set-server-versions.outputs.server_versions }}
+      python_versions: ${{ steps.set-python-versions.outputs.python_versions }}
+    steps:
+      - uses: actions/checkout@v2
+      - id: set-server-versions
+        run: echo "::set-output name=server_versions::$(cat tautulli/API_VERSIONS | jq -R -s -c 'split("\n")')"
+      - id: set-python-versions
+        run: echo "::set-output name=python_versions::$(cat tautulli/PYTHON_VERSIONS | jq -R -s -c 'split("\n")')"
+
+  unit-tests:
+    needs: versions
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        image_version: ${{ fromJson(needs.versions.outputs.server_versions) }}
+        python_version: ${{ fromJson(needs.versions.outputs.python_versions) }}
+    services:
+      tautulli-docker:
+        image: tautulli/tautulli:v${{ matrix.image_version }}
+        ports:
+          - 8001:8181
+    steps:
+      - name: Matrix => (${{ matrix.image_version }} ${{ matrix.python_version}})
+        run: |
+          echo ${{ matrix.image_version }}
+          echo ${{ matrix.python_version }}
+      - name: Sleep for 30 seconds
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '30s'
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Make envfile
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          envkey_T_URL: http://localhost:8001
+          file_name: .env
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python_version }}
+      - name: Install Python dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          make install
+      - name: Test with pytest
+        run: make test

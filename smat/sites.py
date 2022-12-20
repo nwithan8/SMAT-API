@@ -1,0 +1,30 @@
+from enum import Enum
+
+
+class Site(Enum):
+    """Site enum."""
+
+    RUMBLE_VIDEO = "rumble_video"
+    RUMBLE_COMMENT = "rumble_comment"
+    BITCHUTE_VIDEO = "bitchute_video"
+    BITCHUTE_COMMENT = "bitchute_comment"
+    RUTUBE_VIDEO = "rutube_video"
+    RUTUBE_COMMENT = "rutube_comment"
+    TIKTOK_VIDEO = "tiktok_video"
+    TIKTOK_COMMENT = "tiktok_comment"
+    LBRY_VIDEO = "lbry_video"
+    LBRY_COMMENT = "lbry_comment"
+    EIGHTKUN = "8kun"
+    FOURCHAN = "4chan"
+    GAB = "gab"
+    PARLER = "parler"
+    WIN = "win"
+    POAL = "poal"
+    TELEGRAM = "telegram"
+    KIWIFARMS = "kiwifarms"
+    GETTR = "gettr"
+    WIMKIN = "wimkin"
+    MEWE = "mewe"
+    MINDS = "minds"
+    VK = "vk"
+    TRUTH_SOCIAL = "truth_social"

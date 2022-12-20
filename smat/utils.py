@@ -1,11 +1,16 @@
 from datetime import datetime
 
 
-def string_to_datetime(string: str, format: str = "%Y-%m-%dT%H:%M:%S.%f") -> datetime:
-    return datetime.strptime(string, format)
+def string_to_datetime(
+    string: str, date_format: str = "%Y-%m-%dT%H:%M:%S.%f"
+) -> datetime:
+    return datetime.strptime(string, date_format)
 
-def datetime_to_string(datetime_object: datetime, format: str = "%Y-%m-%dT%H:%M:%S.%f") -> str:
-    return datetime_object.strftime(format)
+
+def datetime_to_string(
+    datetime_object: datetime, date_format: str = "%Y-%m-%dT%H:%M:%S.%f"
+) -> str:
+    return datetime_object.strftime(date_format)
 
 
 def validate_dict(items: dict):
@@ -17,10 +22,8 @@ def validate_dict(items: dict):
 
 
 def accepted_values(key):
-    if key == "site":
-        return ["reddit", "twitter", "8kun", "4chan", "gab", "parler", "thedonald", "poal", "telegram"]
-    elif key == 'interval':
-        return ['hour', 'day', 'week', 'month']
+    if key == "interval":
+        return ["hour", "day", "week", "month"]
     else:
         return []
 
