@@ -12,7 +12,9 @@ This library currently supports the three main methods of [SMAT's API](https://a
 - ``get_activity``: Aggregate based on a particular field on a specific outlet
 - ``get_time_series``: Get a time series for a specific outlet
 
-- ``term`` is a required parameter for each field. All other parameters are optional or have preset defaults.
-- Default outlet is ``reddit``
+- ``term`` is a required parameter for each field. 
+- ``site``is a required parameter for each field. You can use the predefined enums in ``smat.Site`` or provide your own string.
+  - NOTE: IF you provide an invalid site, you will receive an empty JSON body back from the API.
+- All other parameters are optional or have preset defaults.
 
 Docs coming soon. PRs welcome.
